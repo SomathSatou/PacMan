@@ -26,4 +26,13 @@ public class ControleurBasique implements ControleurGame{
 		partie.gameOver();
 	
 	}
+	public void pause(){
+		partie.stop();
+	}
+
+	@Override
+	public void setTemp() {
+		// TODO Auto-generated method stub
+		
+	}
 }

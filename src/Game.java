@@ -7,12 +7,12 @@ public abstract class Game implements Runnable,GameObservable{
 	private int tourMax;
 	private boolean isRunning;
 	Thread thread;
-	long timeTour = 400;
-    private List<Observateur> observateurs = new ArrayList<>();
+	long timeTour = 500;
+	private List<Observateur> observateurs = new ArrayList<>();
 
 	// methode de déroulement du jeux
 	public Game(int tour){
-		tourMax = 5;
+		tourMax = tour;
 	}
 	
 	public void init(){
@@ -36,12 +36,11 @@ public abstract class Game implements Runnable,GameObservable{
     }
 
 	public void run(){
-		init();
 		int ending = 0;
 		while (ending == 0){
 			step();
-			setNbrTour(getNbrTour() + 1);
-			if ((!isRunning)||(getNbrTour() > tourMax)||(fin_partie())){ending=1;}
+			//setNbrTour(getNbrTour() + 1);
+			if ((!isRunning)||(getNbrTour() > tourMax)||(!fin_partie())){ending=1;}
 			try {
 				thread.sleep(timeTour);
 			} catch (InterruptedException e) {
@@ -54,7 +53,7 @@ public abstract class Game implements Runnable,GameObservable{
 	
 	
 	public void stop(){
-		// a coder
+		isRunning = false;
 	}
 	
 	// getters et setters
@@ -65,6 +64,14 @@ public abstract class Game implements Runnable,GameObservable{
 		this.nbrTour = nbrTour;
 	}
 	
+	public int getTourMax() {
+		return tourMax;
+	}
+
+    public void setTimeTour(long timeTour) {
+		this.timeTour = timeTour;
+	}
+    
 	// methode abstraite
 	public abstract boolean fin_partie();	
 	public abstract void initializeGame();
