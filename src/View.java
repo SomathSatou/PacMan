@@ -23,14 +23,16 @@ public class View extends JFrame implements Observateur{
 	
 	private JFrame commande;
 	private JFrame Plateaux;
-	private Game controleurGame;
+	private ControleurGame controleurGame;
+	private Game game;
 	private JLabel nbrTour;
 	
 	
-	public View(Game con) {
+	public View(Game game,ControleurGame control) {
 		// initialisation pour les test
-		controleurGame = con;
-		controleurGame.enregistrerObservateur(this);
+		this.game = game;
+		game.enregistrerObservateur(this);
+		controleurGame = control;
 		
 		// ************** fenetre commande **********************************
         commande = new JFrame();
@@ -97,7 +99,7 @@ public class View extends JFrame implements Observateur{
 		MySlider.setPaintLabels(true);
 		
 		// label "nombre de tour par seconde"
-		nbrTour = new JLabel("Nombre de tour : "+controleurGame.getNbrTour());
+		nbrTour = new JLabel("Nombre de tour : "+game.getNbrTour());
 		
 		// label "turn : x "
 		
@@ -145,6 +147,6 @@ public class View extends JFrame implements Observateur{
 	@Override
 	public void actualiser() {
 		// TODO Auto-generated method stub
-		nbrTour.setText("Nombre de tour : "+controleurGame.getNbrTour());
+		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
 	}
 }
