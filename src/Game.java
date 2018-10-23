@@ -68,6 +68,10 @@ public abstract class Game implements Runnable,GameObservable{
 		this.nbrTour = nbrTour;
 	}
 	
+	public int getTourMax() {
+		// TODO Auto-generated method stub
+		return tourMax;
+	}
 	// methode abstraite
 	public abstract boolean fin_partie();	
 	public abstract void initializeGame();
@@ -83,6 +87,11 @@ public abstract class Game implements Runnable,GameObservable{
 			Observateur observateur = observateurs.get(i);
 			observateur.actualiser();
 		}
+	}
+
+	public void setTimeTour(long l) {
+		// TODO Auto-generated method stub
+		timeTour = l;
 	}
 
 
