@@ -7,4 +7,6 @@ public interface ControleurGame {
 	public void initializeGame();
 	public void takeTurn();
 	public void gameOver();
+	public void pause();
+	public void setTemp();
 }

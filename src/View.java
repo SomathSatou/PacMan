@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 public class View extends JFrame implements Observateur{
@@ -26,6 +28,11 @@ public class View extends JFrame implements Observateur{
 	private ControleurGame controleurGame;
 	private Game game;
 	private JLabel nbrTour;
+	JButton choixRun;
+	JButton choixReset;
+	JButton choixStep;
+	JButton choixPause;
+	JSlider MySlider;
 	
 	
 	public View(Game game,ControleurGame control) {
@@ -46,7 +53,7 @@ public class View extends JFrame implements Observateur{
         top.setLayout(new GridLayout(1,4));
         
         Icon icon_restart = new ImageIcon("icon_restart.png");
-        JButton choixReset = new JButton(icon_restart);
+        choixReset = new JButton(icon_restart);
         choixReset.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent evenement){
         		controleurGame.initializeGame();
@@ -55,7 +62,7 @@ public class View extends JFrame implements Observateur{
         top.add(choixReset);
 
         Icon icon_run = new ImageIcon("icon_run.png");
-        JButton choixRun = new JButton(icon_run);
+        choixRun = new JButton(icon_run);
         choixRun.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent evenement){
         		controleurGame.launch();
@@ -64,7 +71,7 @@ public class View extends JFrame implements Observateur{
         top.add(choixRun);
         
         Icon icon_step = new ImageIcon("icon_step.png");
-        JButton choixStep = new JButton(icon_step);
+        choixStep = new JButton(icon_step);
         choixStep.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent evenement){
         		controleurGame.takeTurn();
@@ -73,10 +80,10 @@ public class View extends JFrame implements Observateur{
         top.add(choixStep);
         
         Icon icon_pause = new ImageIcon("icon_pause.png");
-        JButton choixPause = new JButton(icon_pause);
+        choixPause = new JButton(icon_pause);
         choixPause.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent evenement){
-        		controleurGame.initializeGame();
+        		controleurGame.pause();
         	}
         });
         top.add(choixPause);
@@ -91,12 +98,17 @@ public class View extends JFrame implements Observateur{
         for (int i=0;i<graduation.length;i++){
         	graduation[i] = i+1;
         }
-        JSlider MySlider = new JSlider(JSlider.HORIZONTAL,graduation[0],graduation[9],graduation[4]);
+        MySlider = new JSlider(JSlider.HORIZONTAL,graduation[0],graduation[9],graduation[4]);
         MySlider.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
         MySlider.setMajorTickSpacing(1);
 		MySlider.setMinorTickSpacing(1);
 		MySlider.setPaintTicks(true);
 		MySlider.setPaintLabels(true);
+		MySlider.addChangeListener(new ChangeListener(){
+			public void stateChanged(ChangeEvent event) {
+				controleurGame.setTemp();
+			}
+		});
 		
 		// label "nombre de tour par seconde"
 		nbrTour = new JLabel("Nombre de tour : "+game.getNbrTour());
@@ -139,8 +151,34 @@ public class View extends JFrame implements Observateur{
         int dxp = centerPointp.x - windowSizep.width / 2 ;
         int dyp = centerPointp.y - windowSizep.height / 2 + 150;
         Plateaux.setLocation(dxp, dyp);
+        
 
         Plateaux.setVisible(true);
+	}
+
+	public JSlider getMySlider() {
+		return MySlider;
+	}
+
+	// getter et setter
+	public JButton getChoixRun() {
+		return choixRun;
+	}
+
+
+	public JButton getChoixReset() {
+		return choixReset;
+	}
+
+
+
+	public JButton getChoixStep() {
+		return choixStep;
+	}
+
+
+	public JButton getChoixPause() {
+		return choixPause;
 	}
 
 

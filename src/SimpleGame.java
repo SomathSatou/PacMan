@@ -6,12 +6,15 @@ public class SimpleGame extends Game {
 	}
 	public boolean fin_partie(){
 		System.out.println("methode fin de partie" );
-		return false;}	
+		if (getNbrTour()<getTourMax()){return true;}
+		else{return false;}
+	}
+	
 	public void initializeGame(){
 		System.out.println("initialisation du jeux" );
 	}
 	public void takeTurn(){
-		System.out.println("prise de tour "+getNbrTour() );
+		System.out.println("prise de tour "+(getNbrTour()+1) );
 		setNbrTour(getNbrTour() + 1);
 		notifierObservateur();
 
