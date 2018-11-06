@@ -1,8 +1,12 @@
 import java.awt.Button;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,6 +24,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -29,6 +35,7 @@ public class View extends JFrame implements Observateur{
 	
 	private JFrame commande;
 	private JFrame Plateaux;
+	private JFrame frame;
 	private ControleurGame controleurGame;
 	private Game game;
 	private JLabel nbrTour;
@@ -160,6 +167,9 @@ public class View extends JFrame implements Observateur{
         Plateaux.add(visuel);
 
         Plateaux.setVisible(true);
+
+        // ******************** fenetre ouvrir le fichier maze ******************************
+        initialize();
 	}
 
 	public JSlider getMySlider() {
@@ -193,6 +203,8 @@ public class View extends JFrame implements Observateur{
 		// TODO Auto-generated method stub
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
 	}
+	
+
 	public class MyFileOpenerClass{
 		JFileChooser file_chooser=new JFileChooser();
 		StringBuilder sb = new StringBuilder();
@@ -200,20 +212,59 @@ public class View extends JFrame implements Observateur{
 		public void pick_me() throws FileNotFoundException{
 			if(file_chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)
 			{
+				// get the file
 				File file = file_chooser.getSelectedFile();
-				input = new Scanner(file);
-			   while(input.hasNext())
-			   {
-				   sb.append(input.nextLine());
-				   sb.append("\n");
-			   }
-			   input.close();
-			}
+				// create a scanner for the file
+				//input = new Scanner(file);
+				//read path of file
+			   
+			   String filename= file.getAbsolutePath();
+			   //jTextField1
+			  // input.close();
+		  	}
 			
 			else{
-				sb.append("no file");
+			sb.append("no file");
 			}
 		}
 		   
+	}
+
+	public void initialize() {
+		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		 final JTextArea textArea = new JTextArea();
+		 textArea.setFont(new Font("Monospaced",Font.PLAIN,14));
+		 textArea.setForeground(Color.RED);
+		 textArea.setEditable(false);
+		 textArea.setBounds(82,34,275,107);
+		 frame.getContentPane().add(textArea);
+		 JButton btnNewButton =new JButton("Get File");
+		 btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				// TODO Auto-generated method stub
+				MyFileOpenerClass of = new MyFileOpenerClass();
+				try{
+					of.pick_me();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				textArea.setText(of.sb.toString());
+				
+			}
+		});
+		 btnNewButton.setBounds(160, 182, 121, 43);
+		 frame.getContentPane().add(btnNewButton);
+		 frame.setVisible(true);
+	
+	
+	
 	}
 }
