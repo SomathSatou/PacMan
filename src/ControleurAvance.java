@@ -6,9 +6,11 @@ public class ControleurAvance implements ControleurGame{
 	View frame;
 
 	public ControleurAvance (Game game){
+		partie = game;
 		frame = new View(game,this);
 		frame.getChoixReset().setEnabled(false);
-		partie = game;
+		frame.getChoixPause().setEnabled(false);
+
 	}
 	
 	public void launch(){
@@ -19,12 +21,17 @@ public class ControleurAvance implements ControleurGame{
 	}
 	public boolean fin_partie(){		
 		frame.getChoixStep().setEnabled(false);
+		frame.getChoixReset().setEnabled(true);
 		return partie.fin_partie();
 		}
 	
 	public void initializeGame(){
+		partie.stop();
+
 		frame.getChoixRun().setEnabled(true);
 		frame.getChoixReset().setEnabled(false);
+		frame.getChoixPause().setEnabled(false);
+		partie.stop();
 		partie.init();
 	}
 	
@@ -52,5 +59,9 @@ public class ControleurAvance implements ControleurGame{
 		// TODO Auto-generated method stub
 		partie.setTimeTour((long)1000/frame.getMySlider().getValue());
 		
+	}
+	
+	public Maze getMaze(){
+		return partie.getMaze();
 	}
 }

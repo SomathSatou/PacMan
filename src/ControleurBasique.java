@@ -35,4 +35,8 @@ public class ControleurBasique implements ControleurGame{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public Maze getMaze(){
+		return partie.getMaze();
+	}
 }

@@ -9,4 +9,5 @@ public interface ControleurGame {
 	public void gameOver();
 	public void pause();
 	public void setTemp();
+	public Maze getMaze();
 }

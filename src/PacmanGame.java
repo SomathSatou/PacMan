@@ -2,6 +2,20 @@ import java.util.ArrayList;
 
 
 public class PacmanGame extends Game{
+	@Override
+	public Maze getMaze() {
+		// TODO Auto-generated method stub
+		Maze nouv = null;
+		try {
+			nouv = new Maze("src/layouts-20180927/mediumClassic.lay");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nouv;
+	}
+
+
 	Maze maze;
     ArrayList<Pacman> pacmans;
     ArrayList<Fantome> fantomes;
@@ -43,7 +57,19 @@ public class PacmanGame extends Game{
 		
 	}
 
+	public boolean isLegalMove(Agent agent,AgentAction action) {
+
+		return maze.isWall(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy());
+	}
 	
 	
+	public void moveAgent(Agent agent,AgentAction action){
+		if (isLegalMove(agent,action)){
+			agent.setPos_courante(new PositionAgent(agent.getPos_courante().getX()+action.getVx(),
+											   agent.getPos_courante().getY()+action.getVy(),
+											   action.getDirection()));
+		}
+		
+	}
 
 }

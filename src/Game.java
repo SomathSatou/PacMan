@@ -96,6 +96,18 @@ public abstract class Game implements Runnable,GameObservable{
 		timeTour = l;
 	}
 
+	public Maze getMaze() {
+		// TODO Auto-generated method stub
+		Maze nouv = null;
+		try {
+			nouv = new Maze("src/layouts-20180927/testMaze.lay");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nouv;
+	}
+
 
 	
 }

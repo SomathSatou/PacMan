@@ -150,13 +150,14 @@ public class View extends JFrame implements Observateur{
         Plateaux.setSize(new Dimension(700, 700));
         
         Plateaux.addWindowListener(l);
+        PanelPacmanGame visuel = new PanelPacmanGame(controleurGame.getMaze());
         Dimension windowSizep = Plateaux.getSize();
         GraphicsEnvironment gep = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPointp = gep.getCenterPoint();
         int dxp = centerPointp.x - windowSizep.width / 2 ;
         int dyp = centerPointp.y - windowSizep.height / 2 + 150;
         Plateaux.setLocation(dxp, dyp);
-        
+        Plateaux.add(visuel);
 
         Plateaux.setVisible(true);
 	}
