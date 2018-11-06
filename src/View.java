@@ -8,10 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,6 +37,7 @@ public class View extends JFrame implements Observateur{
 	JButton choixStep;
 	JButton choixPause;
 	JSlider MySlider;
+	
 	
 	
 	public View(Game game,ControleurGame control) {
@@ -186,5 +191,28 @@ public class View extends JFrame implements Observateur{
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
+	}
+	public class MyFileOpenerClass{
+		JFileChooser file_chooser=new JFileChooser();
+		StringBuilder sb = new StringBuilder();
+		private Scanner input;
+		public void pick_me() throws FileNotFoundException{
+			if(file_chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)
+			{
+				File file = file_chooser.getSelectedFile();
+				input = new Scanner(file);
+			   while(input.hasNext())
+			   {
+				   sb.append(input.nextLine());
+				   sb.append("\n");
+			   }
+			   input.close();
+			}
+			
+			else{
+				sb.append("no file");
+			}
+		}
+		   
 	}
 }

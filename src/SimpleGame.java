@@ -5,9 +5,10 @@ public class SimpleGame extends Game {
 		// TODO Auto-generated constructor stub
 	}
 	public boolean fin_partie(){
-		System.out.println("methode fin de partie" );
-		if (getNbrTour()< getTourMax()){return true;}
-		else{return false;}
+		//System.out.println("methode fin de partie" );
+	
+		
+		return getNbrTour()<getTourMax();
 	}
 	
 
@@ -16,8 +17,9 @@ public class SimpleGame extends Game {
 	}
 	public void takeTurn(){
 		System.out.println("prise de tour "+(getNbrTour()+1) );
-		setNbrTour(getNbrTour() + 1);
+		setNbrTour(getNbrTour() +1);
 		notifierObservateur();
+		
 
 		
 	}

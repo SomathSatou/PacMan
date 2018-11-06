@@ -1,14 +1,21 @@
 
-public abstract class Agent {
-	 PositionAgent pos_courante;
-	 Pacman p;
-	 Fantome f;
+
+public class Agent {
+	 
 	
-	public Agent(PositionAgent pos_courante){
-		this.pos_courante=pos_courante;
-        	
-	}
 	
+	PositionAgent pos_courante;
+	 
+	
+
+   public Agent(PositionAgent pos_courante){
+	   this.pos_courante=pos_courante;
+	   
+   }
+		
+	
+
+
     
     
 }

@@ -39,12 +39,13 @@ public abstract class Game implements Runnable,GameObservable{
     }
 
 	public void run(){
-		init();
+		//init();
 		int ending = 0;
 		while (ending == 0){
+			
 			step();
-			setNbrTour(getNbrTour() + 1);
-			if ((!isRunning)||(getNbrTour() > tourMax)||(fin_partie())){ending=1;}
+			//setNbrTour(getNbrTour() + 1);
+			if ((!isRunning)||(getNbrTour() > tourMax)||(!fin_partie())){ending=1;}
 			try {
 				thread.sleep(timeTour);
 			} catch (InterruptedException e) {
@@ -57,7 +58,8 @@ public abstract class Game implements Runnable,GameObservable{
 	
 	
 	public void stop(){
-		// a coder
+		isRunning=false;
+		
 	}
 	
 	// getters et setters
