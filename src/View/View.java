@@ -248,8 +248,7 @@ public class View extends JFrame implements Observateur{
 				// TODO Auto-generated method stub
 				MyFileOpenerClass of = new MyFileOpenerClass();
 				try {
-					//System.out.println();
-					visuel.m = controleurGame.getMaze(of.pick_me());
+					visuel.m = controleurGame.getMaze(of.pick_me());;
 					visuel.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();

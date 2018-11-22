@@ -69,6 +69,8 @@ public class ControleurAvance implements ControleurGame{
 	
 
 	public Maze getMaze(String path){
+		partie.setPath(path);
+		partie.getMaze(path);
 		return partie.getMaze(path);
 	}
 
