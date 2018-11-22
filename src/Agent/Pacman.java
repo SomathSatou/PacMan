@@ -1,3 +1,4 @@
+package Agent;
 
 public class Pacman extends Agent{
 

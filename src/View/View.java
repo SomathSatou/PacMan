@@ -1,3 +1,4 @@
+package View;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,6 +30,9 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Controleur.ControleurGame;
+import Modele.Game;
+
 
 public class View extends JFrame implements Observateur{
 	
@@ -39,6 +43,7 @@ public class View extends JFrame implements Observateur{
 	private ControleurGame controleurGame;
 	private Game game;
 	private JLabel nbrTour;
+	PanelPacmanGame visuel;
 	JButton choixRun;
 	JButton choixReset;
 	JButton choixStep;
@@ -157,7 +162,7 @@ public class View extends JFrame implements Observateur{
         Plateaux.setSize(new Dimension(700, 700));
         
         Plateaux.addWindowListener(l);
-        PanelPacmanGame visuel = new PanelPacmanGame(controleurGame.getMaze());
+        visuel = new PanelPacmanGame(controleurGame.getMaze());
         Dimension windowSizep = Plateaux.getSize();
         GraphicsEnvironment gep = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPointp = gep.getCenterPoint();
@@ -202,6 +207,10 @@ public class View extends JFrame implements Observateur{
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
+		//visuel.setPacmans_pos(game.getPacman_pos());
+		visuel.setGhosts_pos(game.getGhosts_pos());
+		Plateaux.repaint();
+				 
 	}
 	
 

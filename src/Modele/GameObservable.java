@@ -1,3 +1,6 @@
+package Modele;
+
+import View.Observateur;
 
 public interface GameObservable {
     public void enregistrerObservateur(Observateur observateur);

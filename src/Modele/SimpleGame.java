@@ -1,3 +1,4 @@
+package Modele;
 
 public class SimpleGame extends Game {
 	public SimpleGame(int tour) {

@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
 
+import Controleur.ControleurAvance;
+import Modele.PacmanGame;
+
 
 public class main {
 	public static void main(String[] args){

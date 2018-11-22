@@ -1,4 +1,10 @@
+package Controleur;
+
 import javax.swing.JFrame;
+
+import Maze.Maze;
+import Modele.Game;
+import View.View;
 
 
 public class ControleurBasique implements ControleurGame{

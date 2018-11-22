@@ -1,9 +1,22 @@
+package Agent;
+
+import Maze.Maze;
 
 
-public class Agent {
+public class Agent  {
 	 
+	private Strategie strategie;
 	
-	
+	public Strategie getStrategie() {
+		return strategie;
+	}
+
+
+
+	public void setStrategie(Strategie strategie) {
+		this.strategie = strategie;
+	}
+
 	PositionAgent pos_courante;
 	 
 	
@@ -25,7 +38,9 @@ public class Agent {
 	   
    }
 		
-	
+	public AgentAction makeAction(Maze maze){
+		return strategie.makeAction(maze,this);
+	}
 
 
     

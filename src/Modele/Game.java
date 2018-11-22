@@ -1,5 +1,10 @@
+package Modele;
 import java.util.ArrayList;
 import java.util.List;
+
+import Agent.PositionAgent;
+import Maze.Maze;
+import View.Observateur;
 
 
 public abstract class Game implements Runnable,GameObservable{
@@ -16,6 +21,7 @@ public abstract class Game implements Runnable,GameObservable{
 	// methode de déroulement du jeux
 	public Game(int tour){
 		tourMax = 5;
+		init();
 	}
 	
 	public void init(){
@@ -25,7 +31,7 @@ public abstract class Game implements Runnable,GameObservable{
 	}
 	
 	public void step(){
-		if(fin_partie())
+		if(!fin_partie())
 			{takeTurn();}
 		else
 			{gameOver();}
@@ -44,15 +50,15 @@ public abstract class Game implements Runnable,GameObservable{
 		while (ending == 0){
 			
 			step();
-			//setNbrTour(getNbrTour() + 1);
-			if ((!isRunning)||(getNbrTour() > tourMax)||(!fin_partie())){ending=1;}
+			if ((!isRunning)||(getNbrTour() > tourMax)||(fin_partie())){ending=1;}
 			try {
 				thread.sleep(timeTour);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			notifierObservateur();
 			}
+			notifierObservateur();
+			
 		}
 	}
 	
@@ -106,6 +112,16 @@ public abstract class Game implements Runnable,GameObservable{
 			e.printStackTrace();
 		}
 		return nouv;
+	}
+
+	public ArrayList<PositionAgent> getGhosts_pos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getPacman_pos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

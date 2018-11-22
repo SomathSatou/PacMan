@@ -1,4 +1,10 @@
+package Controleur;
+
 import javax.swing.JFrame;
+
+import Maze.Maze;
+import Modele.Game;
+import View.View;
 
 
 public class ControleurAvance implements ControleurGame{
@@ -17,7 +23,7 @@ public class ControleurAvance implements ControleurGame{
 		frame.getChoixPause().setEnabled(true);
 		frame.getChoixRun().setEnabled(false);
 		frame.getChoixReset().setEnabled(true);
-		if(partie.fin_partie()){partie.launch();}
+		if(!partie.fin_partie()){partie.launch();}
 	}
 	public boolean fin_partie(){		
 		frame.getChoixStep().setEnabled(false);

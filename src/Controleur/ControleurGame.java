@@ -1,4 +1,7 @@
+package Controleur;
 import javax.swing.JFrame;
+
+import Maze.Maze;
 
 
 public interface ControleurGame {

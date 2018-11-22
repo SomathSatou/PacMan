@@ -1,3 +1,4 @@
+package Maze;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -5,6 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import Agent.Agent;
+import Agent.AgentAction;
+import Agent.PositionAgent;
 
 
 public class Maze implements Serializable{
@@ -187,6 +192,10 @@ public class Maze implements Serializable{
 		this.ghosts_start = ghosts_start;
 	}
 	
+	public boolean isLegalMove(Agent agent,AgentAction action) {
+
+		return !isWall(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy());
+	}
 	
 }
 
