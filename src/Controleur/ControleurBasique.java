@@ -42,7 +42,7 @@ public class ControleurBasique implements ControleurGame{
 		
 	}
 	
-	public Maze getMaze(){
-		return partie.getMaze();
+	public Maze getMaze(String path){
+		return partie.getMaze(path);
 	}
 }

@@ -14,11 +14,11 @@ public class PacmanGame extends Game{
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
 	@Override
-	public Maze getMaze() {  // remplacer le chemin par un str pour pouvoir la rappeler avec les differents labyrinthe
+	public Maze getMaze(String path) {  // remplacer le chemin par un str pour pouvoir la rappeler avec les differents labyrinthe
 		// TODO Auto-generated method stub
 		Maze nouv = null;
 		try {
-			nouv = new Maze("src/layouts-20180927/mediumClassic.lay");
+			nouv = new Maze(path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class PacmanGame extends Game{
 	@Override
 	public void initializeGame() {
 		// TODO Auto-generated method stub
-		this.maze = getMaze();
+	   this.maze = getMaze("src/layouts-20180927/mediumClassic.lay");
 	   pacmans= new ArrayList<Pacman>();
 	   fantomes= new ArrayList<Fantome>();
 	   for(int i=0 ; i<maze.getPacman_start().size();i++){

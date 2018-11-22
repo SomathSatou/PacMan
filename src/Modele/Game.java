@@ -102,11 +102,23 @@ public abstract class Game implements Runnable,GameObservable{
 		timeTour = l;
 	}
 
+	public Maze getMaze(String path) {
+		// TODO Auto-generated method stub
+		Maze nouv = null;
+		try {
+			nouv = new Maze(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nouv;
+	}
+	
 	public Maze getMaze() {
 		// TODO Auto-generated method stub
 		Maze nouv = null;
 		try {
-			nouv = new Maze("src/layouts-20180927/testMaze.lay");
+			nouv = new Maze("src/layouts-20180927/mediumClassic.lay");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,7 +131,7 @@ public abstract class Game implements Runnable,GameObservable{
 		return null;
 	}
 
-	public Object getPacman_pos() {
+	public ArrayList<PositionAgent>  getPacman_pos() {
 		// TODO Auto-generated method stub
 		return null;
 	}

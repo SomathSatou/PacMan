@@ -162,7 +162,7 @@ public class View extends JFrame implements Observateur{
         Plateaux.setSize(new Dimension(700, 700));
         
         Plateaux.addWindowListener(l);
-        visuel = new PanelPacmanGame(controleurGame.getMaze());
+        visuel = new PanelPacmanGame(controleurGame.getMaze("src/layouts-20180927/mediumClassic.lay"));
         Dimension windowSizep = Plateaux.getSize();
         GraphicsEnvironment gep = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPointp = gep.getCenterPoint();
@@ -214,29 +214,23 @@ public class View extends JFrame implements Observateur{
 	}
 	
 
-	public class MyFileOpenerClass{
-		JFileChooser file_chooser=new JFileChooser();
-		StringBuilder sb = new StringBuilder();
-		private Scanner input;
-		public void pick_me() throws FileNotFoundException{
-			if(file_chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)
-			{
+	public class MyFileOpenerClass {
+		JFileChooser file_chooser = new JFileChooser();
+
+		public String pick_me() throws FileNotFoundException {
+			String path = "";
+			if (file_chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				// get the file
 				File file = file_chooser.getSelectedFile();
-				// create a scanner for the file
-				//input = new Scanner(file);
-				//read path of file
-			   
-			   String filename= file.getAbsolutePath();
-			   //jTextField1
-			  // input.close();
-		  	}
-			
-			else{
-			sb.append("no file");
+				// read the path of file
+				// System.out.println("selected file:"+file.getAbsolutePath() );
+				path = file.getAbsolutePath();
+				System.out.println(path);
+
 			}
+			return path;
+
 		}
-		   
 	}
 
 	public void initialize() {
@@ -245,12 +239,6 @@ public class View extends JFrame implements Observateur{
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		 final JTextArea textArea = new JTextArea();
-		 textArea.setFont(new Font("Monospaced",Font.PLAIN,14));
-		 textArea.setForeground(Color.RED);
-		 textArea.setEditable(false);
-		 textArea.setBounds(82,34,275,107);
-		 frame.getContentPane().add(textArea);
 		 JButton btnNewButton =new JButton("Get File");
 		 btnNewButton.addActionListener(new ActionListener() {
 			
@@ -259,13 +247,13 @@ public class View extends JFrame implements Observateur{
 				
 				// TODO Auto-generated method stub
 				MyFileOpenerClass of = new MyFileOpenerClass();
-				try{
-					of.pick_me();
-				}catch(Exception e){
+				try {
+					//System.out.println();
+					visuel.m = controleurGame.getMaze(of.pick_me());
+					visuel.repaint();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
-				textArea.setText(of.sb.toString());
 				
 			}
 		});
