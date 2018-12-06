@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import Agent.PositionAgent;
 import Maze.Maze;
 
-public class PanelPacmanGame extends JPanel{
+public class PanelPacmanGame extends JPanel {
 
 
 	private Color wallColor=Color.BLUE;
@@ -147,6 +147,10 @@ public class PanelPacmanGame extends JPanel{
 		if (pacmanDirection==Maze.WEST)
 		{
 			sa=160; fa=-320;
+		}
+		if (pacmanDirection==Maze.STOP)
+		{
+			sa=70; fa=-320;
 		}
 
 		g.fillArc((int)(npx+posx),(int)(npy+posy),(int)(nsx),(int)nsy,sa,fa);

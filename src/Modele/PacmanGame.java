@@ -13,6 +13,7 @@ public class PacmanGame extends Game{
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
+	
 
 	
 
@@ -71,7 +72,6 @@ public class PacmanGame extends Game{
 			moveAgent(ghost,ghost.makeAction(maze));
 		}
 	    for(Agent pacman : pacmans){
-	    	System.out.println("lol");
 			moveAgent(pacman,pacman.makeAction(maze));
 		} 
 	    
@@ -89,12 +89,9 @@ public class PacmanGame extends Game{
 	
 	public void moveAgent(Agent agent,AgentAction action){
 		if (maze.isLegalMove(agent,action)){
-			System.out.println("position initial "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
 			agent.setPos_courante(new PositionAgent(agent.getPos_courante().getX()+action.getVx(),
 											   agent.getPos_courante().getY()+action.getVy(),
 											   action.getDirection()));
-			System.out.println("position final "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
-
 		}
 		notifierObservateur();
 		
