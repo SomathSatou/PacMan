@@ -11,7 +11,7 @@ import View.PanelPacmanGame;
 
 
 public class PacmanGame extends Game{
-	PanelPacmanGame ppg;
+	//PanelPacmanGame ppg;
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
@@ -74,9 +74,6 @@ public class PacmanGame extends Game{
 			moveAgent(ghost,ghost.makeAction(maze));
 		}
 
-	   for(Agent pacman : pacmans){
-	    	System.out.println("lol");
-
 	    for(Agent pacman : pacmans){
 
 			moveAgent(pacman,pacman.makeAction(maze));
@@ -103,12 +100,15 @@ public class PacmanGame extends Game{
 			System.out.println("position final "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
         }
 		if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
-	          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),true);
+	          maze.setCapsule(agent.getPos_courante().getX()+ action.getVx(), agent.getPos_courante().getY()+ action.getVy(),true);
+	        
 			}
+		//
 		
 		if(maze.isFood(agent.getPos_courante().getX()+ action.getVx(), agent.getPos_courante().getY()+ action.getVy())){
 			maze.setFood(agent.getPos_courante().getX(), agent.getPos_courante().getY(), false);
-			//setGhostsScarred =true;
+			
+			
 
 		}
 		

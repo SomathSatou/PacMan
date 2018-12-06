@@ -32,7 +32,7 @@ public class Maze implements Serializable{
 	private boolean walls[][];
 	private boolean food[][];
 	private boolean capsules[][];
-
+  
 	/** 
 	 * Les positions initiales des agents
 	 */
