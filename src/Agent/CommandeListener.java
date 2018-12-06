@@ -15,7 +15,7 @@ public class CommandeListener extends JFrame implements KeyListener {
 
 	public CommandeListener(){
 		super();
-		this.setSize(new Dimension(20,20));
+		this.setSize(new Dimension(50,50));
 		test=new TextField();
 		addKeyListener(this);
 		add(test);

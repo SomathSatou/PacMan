@@ -172,8 +172,6 @@ public class View extends JFrame implements Observateur{
         int dyp = centerPointp.y - windowSizep.height / 2 + 150;
         Plateaux.setLocation(dxp, dyp);
         Plateaux.add(visuel);
-
-        
         Plateaux.setVisible(true);
 
         // ******************** fenetre ouvrir le fichier maze ******************************
@@ -212,6 +210,13 @@ public class View extends JFrame implements Observateur{
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
 		visuel.setPacmans_pos(game.getPacman_pos());
 		visuel.setGhosts_pos(game.getGhosts_pos());
+		if(game.getTourScared()>0){
+			visuel.setGhostsScarred(true);
+		}
+		else
+		{
+			visuel.setGhostsScarred(false);
+		}
 		Plateaux.repaint();
 				 
 	}
