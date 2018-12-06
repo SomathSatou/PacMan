@@ -226,6 +226,7 @@ public class View extends JFrame implements Observateur{
 				// System.out.println("selected file:"+file.getAbsolutePath() );
 				path = file.getAbsolutePath();
 				System.out.println(path);
+				//ajouter la méthode reset
 
 			}
 			return path;

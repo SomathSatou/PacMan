@@ -14,6 +14,8 @@ public class PacmanGame extends Game{
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
 
+	
+
 	@Override
 	public Maze getMaze(String path) {  // remplacer le chemin par un str pour pouvoir la rappeler avec les differents labyrinthe
 		// TODO Auto-generated method stub
@@ -26,6 +28,11 @@ public class PacmanGame extends Game{
 			e.printStackTrace();
 		}
 		return nouv;
+	}
+	
+	public void setMaze(String path){
+		maze = getMaze(path);
+		
 	}
     
 	public PacmanGame(int tour) {

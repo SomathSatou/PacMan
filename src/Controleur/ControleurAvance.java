@@ -70,8 +70,15 @@ public class ControleurAvance implements ControleurGame{
 
 	public Maze getMaze(String path){
 		partie.setPath(path);
-		partie.getMaze(path);
+		partie.setMaze(path);
 		return partie.getMaze(path);
+	}
+
+	@Override
+	public Maze setMaze(String path) {
+		partie.setPath(path);
+		partie.setMaze(path);
+		return null;
 	}
 
 }

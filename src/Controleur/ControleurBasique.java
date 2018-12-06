@@ -45,4 +45,10 @@ public class ControleurBasique implements ControleurGame{
 	public Maze getMaze(String path){
 		return partie.getMaze(path);
 	}
+
+	@Override
+	public Maze setMaze(String path) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
