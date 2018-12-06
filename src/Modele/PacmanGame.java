@@ -7,9 +7,11 @@ import Agent.Fantome;
 import Agent.Pacman;
 import Agent.PositionAgent;
 import Maze.Maze;
+import View.PanelPacmanGame;
 
 
 public class PacmanGame extends Game{
+	PanelPacmanGame ppg;
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
@@ -70,10 +72,10 @@ public class PacmanGame extends Game{
 		for(Agent ghost : fantomes){
 			moveAgent(ghost,ghost.makeAction(maze));
 		}
-	 /*   for(Agent pacman : pacmans){
+	   for(Agent pacman : pacmans){
 	    	System.out.println("lol");
 			moveAgent(pacman,pacman.makeAction(maze));
-		} */
+		} 
 	    
 		this.setNbrTour(getNbrTour()+1);
 		notifierObservateur();
@@ -94,11 +96,21 @@ public class PacmanGame extends Game{
 											   agent.getPos_courante().getY()+action.getVy(),
 											   action.getDirection()));
 			System.out.println("position final "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
-
+        }
+		if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
+	          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),true);
+			}
+		
+		if(maze.isFood(agent.getPos_courante().getX()+ action.getVx(), agent.getPos_courante().getY()+ action.getVy())){
+			maze.setFood(agent.getPos_courante().getX(), agent.getPos_courante().getY(), false);
+			//setGhostsScarred =true;
 		}
+		
 		notifierObservateur();
 		
 	}
+	
+	
 	
 	public ArrayList<PositionAgent> getGhosts_pos(){
 		ArrayList<PositionAgent> ret = new ArrayList<PositionAgent>();

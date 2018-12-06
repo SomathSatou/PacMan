@@ -224,6 +224,7 @@ public class View extends JFrame implements Observateur{
 				path = file.getAbsolutePath();
 				System.out.println(path);
 				//ajouter la méthode reset
+				
 			}
 			return path;
 		}  }
@@ -244,7 +245,6 @@ public class View extends JFrame implements Observateur{
 				MyFileOpenerClass of = new MyFileOpenerClass();
 				try {
 					visuel.m = controleurGame.getMaze(of.pick_me());;
-	        		controleurGame.initializeGame();
 					visuel.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();
