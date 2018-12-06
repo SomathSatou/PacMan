@@ -70,10 +70,10 @@ public class PacmanGame extends Game{
 		for(Agent ghost : fantomes){
 			moveAgent(ghost,ghost.makeAction(maze));
 		}
-	    for(Agent pacman : pacmans){
+	 /*   for(Agent pacman : pacmans){
 	    	System.out.println("lol");
 			moveAgent(pacman,pacman.makeAction(maze));
-		} 
+		} */
 	    
 		this.setNbrTour(getNbrTour()+1);
 		notifierObservateur();

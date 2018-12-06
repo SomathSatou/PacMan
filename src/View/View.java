@@ -212,15 +212,8 @@ public class View extends JFrame implements Observateur{
 		Plateaux.repaint();
 				 
 	}
-	
-
 	public class MyFileOpenerClass {
 		JFileChooser file_chooser = new JFileChooser();
-
-		
-		
-		
-		
 		public String pick_me() throws FileNotFoundException {
 			String path = "";
 			if (file_chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -231,34 +224,9 @@ public class View extends JFrame implements Observateur{
 				path = file.getAbsolutePath();
 				System.out.println(path);
 				//ajouter la méthode reset
-
 			}
 			return path;
-
-		}
-	}
-
-	/*
-	 *
-	 * public void choosePacmanLayout(Game game) {
-   JButton open = new JButton();
-   mazeFileChooser = new JFileChooser(new java.io.File("./src/ressources/layouts"));
-   mazeFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-   Action details = mazeFileChooser.getActionMap().get("viewTypeDetails");
-   details.actionPerformed(null);
-   if (mazeFileChooser.showOpenDialog(open) == JFileChooser.APPROVE_OPTION) {
-       try {
-           Maze m = new Maze(mazeFileChooser.getSelectedFile().getAbsolutePath());
-           ((PacmanGame) game).setMaze(m);
-           ppg = new PanelPacmanGame(((PacmanGame) game).getMaze());
-           cadreVue.repaint();
-       } catch (Exception ex) {
-           Logger.getLogger(GameView.class.getName()).log(Level.SEVERE, null, ex);
-       }
-   }
-}
-	 */
-	
+		}  }
 	
 	public void initialize() {
 		
