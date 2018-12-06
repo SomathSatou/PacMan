@@ -207,7 +207,7 @@ public class View extends JFrame implements Observateur{
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
-		//visuel.setPacmans_pos(game.getPacman_pos());
+		visuel.setPacmans_pos(game.getPacman_pos());
 		visuel.setGhosts_pos(game.getGhosts_pos());
 		Plateaux.repaint();
 				 
@@ -276,6 +276,7 @@ public class View extends JFrame implements Observateur{
 				MyFileOpenerClass of = new MyFileOpenerClass();
 				try {
 					visuel.m = controleurGame.getMaze(of.pick_me());;
+	        		controleurGame.initializeGame();
 					visuel.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();
