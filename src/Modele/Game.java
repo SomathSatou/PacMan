@@ -54,8 +54,9 @@ public abstract class Game implements Runnable,GameObservable{
 		int ending = 0;
 		while (ending == 0){
 			
-			step();
+			//step();
 			if ((!isRunning)||(getNbrTour() > tourMax)||(fin_partie())){ending=1;}
+			if (ending==0){step();}
 			try {
 				thread.sleep(timeTour);
 			} catch (InterruptedException e) {
