@@ -118,7 +118,7 @@ public abstract class Game implements Runnable,GameObservable{
 		// TODO Auto-generated method stub
 		Maze nouv = null;
 		try {
-			nouv = new Maze("src/layouts-20180927/mediumClassic.lay");
+			nouv = new Maze("src/la youts-20180927/mediumClassic.lay");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
