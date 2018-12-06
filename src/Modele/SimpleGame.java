@@ -28,5 +28,10 @@ public class SimpleGame extends Game {
 		System.out.println("Game Over" );
 	
 	}
+	@Override
+	public void setMaze(String path) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -14,13 +14,18 @@ public abstract class Game implements Runnable,GameObservable{
 	Thread thread;
 	long timeTour = 400;
     private List<Observateur> observateurs = new ArrayList<>();
+	String path ;
+	
+	public void setPath(String path) {
+		this.path = path;
+	}
      
     //plateaux
     
     
 	// methode de déroulement du jeux
 	public Game(int tour){
-		tourMax = 5;
+		tourMax = tour;
 		init();
 	}
 	
@@ -85,6 +90,7 @@ public abstract class Game implements Runnable,GameObservable{
 	public abstract void initializeGame();
 	public abstract void takeTurn();
 	public abstract void gameOver();
+	public abstract void setMaze(String path);
 	
 	// methode de hériter de l'observable   
 	public void enregistrerObservateur(Observateur observateur){observateurs.add(observateur);}
