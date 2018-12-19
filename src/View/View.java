@@ -218,8 +218,6 @@ public class View extends JFrame implements Observateur{
 		{
 			visuel.setGhostsScarred(false);
 		}
-		//visuel.setFood(game.retMaze().getFood());
-		//visuel.setCapsule(game.retMaze().getCapsule());
 		Plateaux.repaint();
 				 
 	}
@@ -255,11 +253,11 @@ public class View extends JFrame implements Observateur{
 				// TODO Auto-generated method stub
 				MyFileOpenerClass of = new MyFileOpenerClass();
 				try {
-					visuel.m = controleurGame.setMaze(of.pick_me());;
-					visuel.repaint();
+					visuel.m = controleurGame.setMaze(of.pick_me());	
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				controleurGame.initializeGame();	
 				
 			}
 		});
