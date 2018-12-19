@@ -208,9 +208,6 @@ public class Maze implements Serializable{
 	}
 
 	public boolean isLegalMove(Agent agent,AgentAction action) {
-		if(isAgent(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy())){
-		
-		}
 		return (!isWall(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy()));
 	}
 	

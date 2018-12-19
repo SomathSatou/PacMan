@@ -16,7 +16,8 @@ public class PacmanGame extends Game{
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
-	FabriqueAgent maker = new FabriqueAgent();
+
+	
 
 	@Override
 	public Maze getMaze() {  
@@ -58,6 +59,7 @@ public class PacmanGame extends Game{
 	   this.maze = getMaze(path);
 	   pacmans= new ArrayList<Pacman>();
 	   fantomes= new ArrayList<Fantome>();
+	   FabriqueAgent maker = new FabriqueAgent();
 	   for(int i=0 ; i<maze.getPacman_start().size();i++){
 		   Pacman p= maker.createPacman(maze.getPacman_start().get(i));
 	  	   pacmans.add(p);
@@ -101,12 +103,12 @@ public class PacmanGame extends Game{
 			System.out.println("position final "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
         }
 		if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
-	          maze.setCapsule(agent.getPos_courante().getX()+ action.getVx(), agent.getPos_courante().getY()+ action.getVy(),true);
+	          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),false);
 	        
 			}
 		//
 		
-		if(maze.isFood(agent.getPos_courante().getX()+ action.getVx(), agent.getPos_courante().getY()+ action.getVy())){
+		if(maze.isFood(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
 			maze.setFood(agent.getPos_courante().getX(), agent.getPos_courante().getY(), false);
 			
 			
