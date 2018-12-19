@@ -212,5 +212,12 @@ public class PanelPacmanGame extends JPanel {
 		this.ghosts_pos = ghosts_pos;
 	}
 
+	public void setFood(boolean[][] n_food){
+		m.setFood(n_food);
+	}
+	
+	public void setCapsule(boolean[][] n_capsule){
+		m.setCapsule(n_capsule);
+	}
 
 }

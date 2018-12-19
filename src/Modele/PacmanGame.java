@@ -19,9 +19,11 @@ public class PacmanGame extends Game{
 	
 
 	@Override
-	public Maze getMaze(String path) {  // remplacer le chemin par un str pour pouvoir la rappeler avec les differents labyrinthe
-		// TODO Auto-generated method stub
-		Maze nouv = null;
+	public Maze getMaze() {  
+		return maze;
+	}
+	
+	public void setMaze(String path){
 		try {
 			setPath(path);
 			nouv = new Maze(path);
@@ -30,11 +32,11 @@ public class PacmanGame extends Game{
 			e.printStackTrace();
 		}
 		return nouv;
+		
 	}
 	
-	public void setMaze(String path){
-		maze = getMaze(path);
-		
+	public Maze retMaze(){
+		return maze;
 	}
     
 	public PacmanGame(int tour) {

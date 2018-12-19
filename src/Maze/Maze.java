@@ -33,6 +33,17 @@ public class Maze implements Serializable{
 	private boolean food[][];
 	private boolean capsules[][];
   
+	public boolean[][] getFood(){return food;}
+	public boolean[][] getCapsule(){return capsules;}
+	
+	public void setFood(boolean[][] n_food){
+		food = n_food;
+	}
+	
+	public void setCapsule(boolean[][] n_capsule){
+		capsules = n_capsule;
+	}
+	
 	/** 
 	 * Les positions initiales des agents
 	 */
@@ -205,6 +216,7 @@ public class Maze implements Serializable{
 		}
 		return false;
 	}
+
 	public boolean isLegalMove(Agent agent,AgentAction action) {
 		if(isAgent(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy())){
 		

@@ -164,7 +164,7 @@ public class View extends JFrame implements Observateur{
         Plateaux.setSize(new Dimension(700, 700));
         
         Plateaux.addWindowListener(l);
-        visuel = new PanelPacmanGame(controleurGame.getMaze("src/layouts-20180927/mediumClassic.lay"));
+        visuel = new PanelPacmanGame(controleurGame.getMaze());
         Dimension windowSizep = Plateaux.getSize();
         GraphicsEnvironment gep = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPointp = gep.getCenterPoint();
@@ -217,6 +217,8 @@ public class View extends JFrame implements Observateur{
 		{
 			visuel.setGhostsScarred(false);
 		}
+		visuel.setFood(game.retMaze().getFood());
+		visuel.setCapsule(game.retMaze().getCapsule());
 		Plateaux.repaint();
 				 
 	}

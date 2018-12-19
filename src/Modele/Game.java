@@ -100,6 +100,7 @@ public abstract class Game implements Runnable,GameObservable{
 	public abstract void takeTurn();
 	public abstract void gameOver();
 	public abstract void setMaze(String path);
+	public abstract Maze retMaze();
 	
 	// methode de hériter de l'observable   
 	public void enregistrerObservateur(Observateur observateur){observateurs.add(observateur);}

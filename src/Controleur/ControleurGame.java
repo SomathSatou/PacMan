@@ -12,6 +12,6 @@ public interface ControleurGame {
 	public void gameOver();
 	public void pause();
 	public void setTemp();
-	public Maze getMaze(String path);
-	public Maze setMaze(String path);
+	public Maze getMaze();
+	public void setMaze(String path);
 }
