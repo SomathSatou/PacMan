@@ -1,5 +1,7 @@
 package Modele;
 
+import Maze.Maze;
+
 public class SimpleGame extends Game {
 	public SimpleGame(int tour) {
 		super(tour);
@@ -32,6 +34,11 @@ public class SimpleGame extends Game {
 	public void setMaze(String path) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Maze retMaze() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

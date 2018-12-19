@@ -26,12 +26,12 @@ public class PacmanGame extends Game{
 	public void setMaze(String path){
 		try {
 			setPath(path);
-			nouv = new Maze(path);
+			Maze nouv = new Maze(path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return nouv;
+		return;
 		
 	}
 	

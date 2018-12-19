@@ -67,22 +67,17 @@ public class ControleurAvance implements ControleurGame{
 		
 	}
 	
-
+	@Override
 	public Maze getMaze(){
 		return partie.getMaze();
 	}
 
 	@Override
-	public void setMaze(String path) {
+	public Maze setMaze(String path) {
 		partie.setPath(path);
 		partie.setMaze(path);
-		return;
+		return partie.getMaze();
 	}
 
-	@Override
-	public Maze getMaze() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

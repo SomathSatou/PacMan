@@ -208,6 +208,7 @@ public class View extends JFrame implements Observateur{
 	public void actualiser() {
 		// TODO Auto-generated method stub
 		nbrTour.setText("Nombre de tour : "+game.getNbrTour());
+		visuel.setMaze(game.getMaze());
 		visuel.setPacmans_pos(game.getPacman_pos());
 		visuel.setGhosts_pos(game.getGhosts_pos());
 		if(game.getTourScared()>0){
@@ -217,8 +218,8 @@ public class View extends JFrame implements Observateur{
 		{
 			visuel.setGhostsScarred(false);
 		}
-		visuel.setFood(game.retMaze().getFood());
-		visuel.setCapsule(game.retMaze().getCapsule());
+		//visuel.setFood(game.retMaze().getFood());
+		//visuel.setCapsule(game.retMaze().getCapsule());
 		Plateaux.repaint();
 				 
 	}
@@ -254,7 +255,7 @@ public class View extends JFrame implements Observateur{
 				// TODO Auto-generated method stub
 				MyFileOpenerClass of = new MyFileOpenerClass();
 				try {
-					visuel.m = controleurGame.getMaze(of.pick_me());;
+					visuel.m = controleurGame.setMaze(of.pick_me());;
 					visuel.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -267,6 +268,7 @@ public class View extends JFrame implements Observateur{
 		 frame.setVisible(true);
 		 
 	
-	
 	}
+	
+
 }

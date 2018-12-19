@@ -42,8 +42,9 @@ public class ControleurBasique implements ControleurGame{
 		
 	}
 	
-	public Maze getMaze(String path){
-		return partie.getMaze(path);
+	@Override
+	public Maze getMaze(){
+		return partie.getMaze();
 	}
 
 	@Override

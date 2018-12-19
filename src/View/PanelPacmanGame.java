@@ -219,5 +219,9 @@ public class PanelPacmanGame extends JPanel {
 	public void setCapsule(boolean[][] n_capsule){
 		m.setCapsule(n_capsule);
 	}
+	
+	public void setMaze(Maze n_m){
+		m = n_m;
+	}
 
 }
