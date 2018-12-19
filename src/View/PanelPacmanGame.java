@@ -31,10 +31,8 @@ public class PanelPacmanGame extends JPanel {
 	private ArrayList<PositionAgent> pacmans_pos;
 	private ArrayList<PositionAgent> ghosts_pos;
 	
-	
 	private boolean ghostsScarred;
 	
-
 	public PanelPacmanGame(Maze maze) {
 		this.m = maze;
 		pacmans_pos = this.m.getPacman_start();

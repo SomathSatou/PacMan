@@ -10,7 +10,6 @@ import View.Observateur;
 public abstract class Game implements Runnable,GameObservable{
 	private int nbrTour;
 	private int tourMax;
-	private int tourScrared = 0;
 	private boolean isRunning;
 	Thread thread;
 	long timeTour = 400;
@@ -18,6 +17,7 @@ public abstract class Game implements Runnable,GameObservable{
     
 	String path ;
 	int ScaredTour = 0;
+	int point = 0;
 	
 	public int getTourScared(){
 		return ScaredTour;

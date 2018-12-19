@@ -12,7 +12,6 @@ import View.PanelPacmanGame;
 
 
 public class PacmanGame extends Game{
-	//PanelPacmanGame ppg;
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
@@ -93,28 +92,62 @@ public class PacmanGame extends Game{
 		
 	}
 
+	public boolean isPacman(Agent agent){
+		for(PositionAgent elt : getPacman_pos()){
+			if (elt == agent.getPos_courante()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isFantome(Agent agent){
+		for(PositionAgent elt : getGhosts_pos()){
+			if (elt == agent.getPos_courante()){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public void moveAgent(Agent agent,AgentAction action){
 		if (maze.isLegalMove(agent,action)){
 			agent.setPos_courante(new PositionAgent(agent.getPos_courante().getX()+action.getVx(),
 											   agent.getPos_courante().getY()+action.getVy(),
 											   action.getDirection()));
-
-			System.out.println("position final "+agent.getPos_courante().getX()+","+agent.getPos_courante().getY());
         }
-		if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
-	          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),false);
-	        
+		if(isPacman(agent)){
+			if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
+		          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),false);
+		          this.ScaredTour = 20;
 			}
-		//
-		
-		if(maze.isFood(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
-			maze.setFood(agent.getPos_courante().getX(), agent.getPos_courante().getY(), false);
 			
-			
-
+			if(maze.isFood(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
+				maze.setFood(agent.getPos_courante().getX(), agent.getPos_courante().getY(), false);
+				this.point++;
+			}
+		}
+		//ne fonction pas sans doute le if a modifier
+		if((isPacman(agent))&&(isFantome(agent))){
+			if (ScaredTour>0){
+				//supprimer le fantôme
+				for(Fantome ghost : fantomes){
+					if(ghost.getPos_courante()==agent.getPos_courante()){
+						fantomes.remove(ghost);
+					}
+				}
+			}
+			else{
+				//supprimer le pacman
+				for(Pacman pac : pacmans){
+					if(pac.getPos_courante()==agent.getPos_courante()){
+						pacmans.remove(pac);
+					}
+				}
+			}
 		}
 		
+		//coder la rencontre entre les différent agents
 		notifierObservateur();
 		
 	}
