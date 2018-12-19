@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import Agent.Agent;
 import Agent.AgentAction;
+import Agent.FabriqueAgent;
 import Agent.Fantome;
 import Agent.Pacman;
 import Agent.PositionAgent;
@@ -15,8 +16,7 @@ public class PacmanGame extends Game{
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
-
-	
+	FabriqueAgent maker = new FabriqueAgent();
 
 	@Override
 	public Maze getMaze() {  
@@ -59,12 +59,12 @@ public class PacmanGame extends Game{
 	   pacmans= new ArrayList<Pacman>();
 	   fantomes= new ArrayList<Fantome>();
 	   for(int i=0 ; i<maze.getPacman_start().size();i++){
-		   Pacman p= new Pacman(maze.getPacman_start().get(i));
+		   Pacman p= maker.createPacman(maze.getPacman_start().get(i));
 	  	   pacmans.add(p);
 	   }
 
 	   for(int i=0; i<maze.getGhosts_start().size();i++){
-		   Fantome f= new Fantome(maze.getGhosts_start().get(i));
+		   Fantome f= maker.createGhost(maze.getGhosts_start().get(i));
 		   fantomes.add(f);
 		   }
 	}
