@@ -15,8 +15,15 @@ public abstract class Game implements Runnable,GameObservable{
 	Thread thread;
 	long timeTour = 400;
     private List<Observateur> observateurs = new ArrayList<>();
+    
 	String path ;
+	int ScaredTour = 0;
 	
+	public int getTourScared(){
+		return ScaredTour;
+	}
+	
+
 	public void setPath(String path) {
 		this.path = path;
 	}

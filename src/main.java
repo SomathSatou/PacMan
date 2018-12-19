@@ -15,4 +15,3 @@ public class main {
 		//Partie.launch();
 	}
 }
-20

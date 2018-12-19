@@ -13,7 +13,6 @@ public class PacmanGame extends Game{
 	Maze maze;
 	ArrayList<Pacman> pacmans;
 	ArrayList<Fantome> fantomes;
-	
 
 	
 
