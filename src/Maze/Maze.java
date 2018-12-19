@@ -192,9 +192,24 @@ public class Maze implements Serializable{
 		this.ghosts_start = ghosts_start;
 	}
 	
+	public boolean isAgent(int x,int y){
+		for(PositionAgent elt : getPacman_start()){
+			if((elt.getX()==x)&&(elt.getY()==y)){
+				return true;
+			}
+		}
+		for(PositionAgent elt : getGhosts_start()){
+			if((elt.getX()==x)&&(elt.getY()==y)){
+				return true;
+			}
+		}
+		return false;
+	}
 	public boolean isLegalMove(Agent agent,AgentAction action) {
-
-		return !isWall(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy());
+		if(isAgent(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy())){
+		
+		}
+		return (!isWall(agent.getPos_courante().getX()+action.getVx(),agent.getPos_courante().getY()+action.getVy()));
 	}
 	
 }
