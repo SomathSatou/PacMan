@@ -27,8 +27,6 @@ public abstract class Game implements Runnable,GameObservable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-     
-    //plateaux
     
     
 	// methode de déroulement du jeux
