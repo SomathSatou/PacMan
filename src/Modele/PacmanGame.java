@@ -7,6 +7,7 @@ import Agent.FabriqueAgent;
 import Agent.Fantome;
 import Agent.Pacman;
 import Agent.PositionAgent;
+import Agent.StrategieGhost;
 import Agent.StrategieMange;
 import Maze.Maze;
 import View.PanelPacmanGame;
@@ -54,9 +55,11 @@ public class PacmanGame extends Game{
 
 	@Override
 	public void initializeGame() {
+		this.ScaredTour = 0;
 		// TODO Auto-generated method stub
 		if (path == null){path = "src/layouts-20180927/mediumClassic.lay";}
 	   this.maze = getMaze(path);
+	   
 	   pacmans= new ArrayList<Pacman>();
 	   fantomes= new ArrayList<Fantome>();
 	   FabriqueAgent maker = new FabriqueAgent();
@@ -77,14 +80,20 @@ public class PacmanGame extends Game{
 
 	@Override
 	public void takeTurn() {
+		if(ScaredTour>0){ScaredTour--;}
+		if(ScaredTour==0){
+			for(Agent ghost : fantomes){
+				ghost.setStrategie(new StrategieGhost());
+			}
+		}
 		for(Agent ghost : fantomes){
 			moveAgent(ghost,ghost.makeAction(maze));
 		}
-
-	    for(Agent pacman : pacmans){
-
-			moveAgent(pacman,pacman.makeAction(maze));
-		} 
+		if(pacmans.size()>0){
+		    for(Agent pacman : pacmans){
+				moveAgent(pacman,pacman.makeAction(maze));
+			} 
+		}
 	    
 		this.setNbrTour(getNbrTour()+1);
 		notifierObservateur();
@@ -137,9 +146,16 @@ public class PacmanGame extends Game{
 			if (ScaredTour>0){
 				//supprimer le fantôme
 				for(Fantome ghost : fantomes){
-					if(ghost.getPos_courante()==agent.getPos_courante()){
+					if(ghost.getPos_courante().equals(agent.getPos_courante())){
 						ghost.setPos_courante(ghost.getStartPos());
 						ghost.setStrategie(new StrategieMange());
+					}
+				}
+			}
+			else{
+				for(Fantome ghost : fantomes){
+					if(ghost.getPos_courante().equals(agent.getPos_courante())){
+						pacmans.remove(agent);
 					}
 				}
 			}
@@ -147,12 +163,22 @@ public class PacmanGame extends Game{
 		else{
 			//supprimer le pacman
 			Pacman tmp = null;
-			for(Pacman pac : pacmans){
-				if(pac.getPos_courante()==agent.getPos_courante()){
-					tmp = pac;
+			if (ScaredTour==0){
+				for(Pacman pac : pacmans){
+					if(pac.getPos_courante().equals(agent.getPos_courante())){
+						tmp = pac;
+					}
+				}
+				pacmans.remove(tmp);
+			}
+			else{
+				for(Pacman pac : pacmans){
+					if(pac.getPos_courante().equals(agent.getPos_courante())){
+						agent.setPos_courante(agent.getStartPos());
+						agent.setStrategie(new StrategieMange());
+					}
 				}
 			}
-			pacmans.remove(tmp);
 		}
 		
 		//coder la rencontre entre les différent agents

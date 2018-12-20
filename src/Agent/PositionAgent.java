@@ -1,6 +1,5 @@
 package Agent;
 
-
 public class PositionAgent {
 	
 	private int x;
@@ -38,4 +37,10 @@ public class PositionAgent {
 		this.dir = dir;
 	}
 	
+	public Boolean equals(PositionAgent pos){
+		if((this.getX()==pos.getX())&&(this.getY()==pos.getY())){return true;}
+		return false;
+		
+		
+	}
 }
