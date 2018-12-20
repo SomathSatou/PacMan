@@ -7,6 +7,7 @@ import Agent.FabriqueAgent;
 import Agent.Fantome;
 import Agent.Pacman;
 import Agent.PositionAgent;
+import Agent.StrategieMange;
 import Maze.Maze;
 import View.PanelPacmanGame;
 
@@ -59,6 +60,10 @@ public class PacmanGame extends Game{
 	   pacmans= new ArrayList<Pacman>();
 	   fantomes= new ArrayList<Fantome>();
 	   FabriqueAgent maker = new FabriqueAgent();
+	/*   for(int i=0 ; i<maze.getPacman_start().size();i++){
+		   Pacman p= maker.createPacmanA(maze.getPacman_start().get(i));
+	  	   pacmans.add(p);
+	   }*/
 	   for(int i=0 ; i<maze.getPacman_start().size();i++){
 		   Pacman p= maker.createPacman(maze.getPacman_start().get(i));
 	  	   pacmans.add(p);
@@ -116,7 +121,7 @@ public class PacmanGame extends Game{
 											   agent.getPos_courante().getY()+action.getVy(),
 											   action.getDirection()));
         }
-		if(isPacman(agent)){
+		if(agent instanceof Pacman){
 			if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
 		          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),false);
 		          this.ScaredTour = 20;
@@ -128,23 +133,26 @@ public class PacmanGame extends Game{
 			}
 		}
 		//ne fonction pas sans doute le if a modifier
-		if((isPacman(agent))&&(isFantome(agent))){
+		if(agent instanceof Pacman){
 			if (ScaredTour>0){
 				//supprimer le fantôme
 				for(Fantome ghost : fantomes){
 					if(ghost.getPos_courante()==agent.getPos_courante()){
-						fantomes.remove(ghost);
+						ghost.setPos_courante(ghost.getStartPos());
+						ghost.setStrategie(new StrategieMange());
 					}
 				}
 			}
-			else{
-				//supprimer le pacman
-				for(Pacman pac : pacmans){
-					if(pac.getPos_courante()==agent.getPos_courante()){
-						pacmans.remove(pac);
-					}
+		}
+		else{
+			//supprimer le pacman
+			Pacman tmp = null;
+			for(Pacman pac : pacmans){
+				if(pac.getPos_courante()==agent.getPos_courante()){
+					tmp = pac;
 				}
 			}
+			pacmans.remove(tmp);
 		}
 		
 		//coder la rencontre entre les différent agents

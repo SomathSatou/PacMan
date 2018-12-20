@@ -6,6 +6,8 @@ import Maze.Maze;
 public class Agent  {
 	 
 	private Strategie strategie;
+	private PositionAgent startPos;
+	private PositionAgent pos_courante;
 	
 	public Strategie getStrategie() {
 		return strategie;
@@ -16,9 +18,6 @@ public class Agent  {
 	public void setStrategie(Strategie strategie) {
 		this.strategie = strategie;
 	}
-
-	PositionAgent pos_courante;
-	 
 	
 
    public PositionAgent getPos_courante() {
@@ -35,12 +34,20 @@ public class Agent  {
 
 	public Agent(PositionAgent pos_courante){
 	   this.pos_courante=pos_courante;
+	   this.startPos=pos_courante;
 	   
    }
 		
 	public AgentAction makeAction(Maze maze){
 		return strategie.makeAction(maze,this);
 	}
+
+
+
+	public PositionAgent getStartPos() {
+		return startPos;
+	}
+
 
 
     
