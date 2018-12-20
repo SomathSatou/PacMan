@@ -40,7 +40,18 @@ public class PositionAgent {
 	public Boolean equals(PositionAgent pos){
 		if((this.getX()==pos.getX())&&(this.getY()==pos.getY())){return true;}
 		return false;
-		
-		
 	}
+	
+	public Boolean DistanceSup(AgentAction mouv, PositionAgent Point){
+		//ici on verirife que le mouv éloigne bien de la position du point
+		return Distance(this.getX(),this.getY(),Point.getX(),Point.getY()) < Distance(this.getX()+mouv.getVx(),this.getY()+mouv.getVy(),Point.getX(),Point.getY());
+	}
+	
+    static public double sqr(int a) {
+        return a*a;
+    }
+ 
+    static public double Distance(int x1, int y1, int x2, int y2) {
+        return Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1));
+    } 
 }

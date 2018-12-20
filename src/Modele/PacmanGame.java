@@ -1,5 +1,6 @@
 package Modele;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import Agent.Agent;
 import Agent.AgentAction;
@@ -7,6 +8,7 @@ import Agent.FabriqueAgent;
 import Agent.Fantome;
 import Agent.Pacman;
 import Agent.PositionAgent;
+import Agent.StrategieApeure;
 import Agent.StrategieGhost;
 import Agent.StrategieMange;
 import Maze.Maze;
@@ -14,12 +16,17 @@ import View.PanelPacmanGame;
 
 
 public class PacmanGame extends Game{
-	Maze maze;
-	ArrayList<Pacman> pacmans;
-	ArrayList<Fantome> fantomes;
+	private Maze maze;
+	private ArrayList<Pacman> pacmans;
+	private ArrayList<Fantome> fantomes;
 
+	public ArrayList<Pacman> getPacmans(){
+		return pacmans;
+	}
 	
-
+	public ArrayList<Fantome> getFantomes(){
+		return fantomes;
+	}
 	@Override
 	public Maze getMaze() {  
 		return maze;
@@ -80,19 +87,26 @@ public class PacmanGame extends Game{
 
 	@Override
 	public void takeTurn() {
-		if(ScaredTour>0){ScaredTour--;}
-		if(ScaredTour==0){
-			for(Agent ghost : fantomes){
-				ghost.setStrategie(new StrategieGhost());
+		if(ScaredTour>0){
+			ScaredTour--;
+			if(ScaredTour==0){
+				for(Agent ghost : fantomes){
+					ghost.setStrategie(new StrategieGhost());
+				}
 			}
 		}
 		for(Agent ghost : fantomes){
-			moveAgent(ghost,ghost.makeAction(maze));
+			moveAgent(ghost,ghost.makeAction(this));
 		}
 		if(pacmans.size()>0){
-		    for(Agent pacman : pacmans){
-				moveAgent(pacman,pacman.makeAction(maze));
-			} 
+			try{
+			    for(Agent pacman : pacmans){
+					moveAgent(pacman,pacman.makeAction(this));
+				} 
+			}
+			catch (ConcurrentModificationException e){
+				
+			}
 		}
 	    
 		this.setNbrTour(getNbrTour()+1);
@@ -134,6 +148,9 @@ public class PacmanGame extends Game{
 			if(maze.isCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
 		          maze.setCapsule(agent.getPos_courante().getX(), agent.getPos_courante().getY(),false);
 		          this.ScaredTour = 20;
+		          for(Fantome elt : getFantomes()){
+		        	  elt.setStrategie(new StrategieApeure());
+		          }
 			}
 			
 			if(maze.isFood(agent.getPos_courante().getX(), agent.getPos_courante().getY())){
@@ -180,7 +197,6 @@ public class PacmanGame extends Game{
 				}
 			}
 		}
-		
 		//coder la rencontre entre les différent agents
 		notifierObservateur();
 		

@@ -2,25 +2,26 @@ package Agent;
 import java.util.ArrayList;
 
 import Maze.Maze;
+import Modele.PacmanGame;
 
 public class StrategieRandom implements Strategie {
 
 	@Override
-	public AgentAction makeAction(Maze maze,Agent agent) {
+	public AgentAction makeAction(PacmanGame game,Agent agent) {
 		// TODO Auto-generated method stub
 		ArrayList<AgentAction> tmp = new ArrayList<AgentAction>();
 		
 		AgentAction nord = new AgentAction(Maze.NORTH);
-		if (maze.isLegalMove(agent,nord)){tmp.add(nord);}
+		if (game.getMaze().isLegalMove(agent,nord)){tmp.add(nord);}
 		
 		AgentAction sud = new AgentAction(Maze.SOUTH);
-		if (maze.isLegalMove(agent,sud)){tmp.add(sud);}
+		if (game.getMaze().isLegalMove(agent,sud)){tmp.add(sud);}
 		
 		AgentAction est = new AgentAction(Maze.EAST);
-		if (maze.isLegalMove(agent,est)){tmp.add(est);}
+		if (game.getMaze().isLegalMove(agent,est)){tmp.add(est);}
 		
 		AgentAction ouest = new AgentAction(Maze.WEST);
-		if (maze.isLegalMove(agent,ouest)){tmp.add(ouest);}
+		if (game.getMaze().isLegalMove(agent,ouest)){tmp.add(ouest);}
 		
 		AgentAction ret;
 		if (tmp.size()>0){

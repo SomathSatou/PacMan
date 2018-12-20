@@ -1,11 +1,12 @@
 package Agent;
 
 import Maze.Maze;
+import Modele.PacmanGame;
 
 public class StrategiePacmanA implements Strategie {
 
 	@Override
-	public AgentAction makeAction(Maze maze, Agent agent) {
+	public AgentAction makeAction(PacmanGame game, Agent agent) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,6 +1,7 @@
 package Agent;
 
 import Maze.Maze;
+import Modele.PacmanGame;
 
 
 public class Agent  {
@@ -38,8 +39,8 @@ public class Agent  {
 	   
    }
 		
-	public AgentAction makeAction(Maze maze){
-		return strategie.makeAction(maze,this);
+	public AgentAction makeAction(PacmanGame game){
+		return strategie.makeAction(game,this);
 	}
 
 
