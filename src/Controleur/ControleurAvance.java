@@ -23,7 +23,9 @@ public class ControleurAvance implements ControleurGame{
 		frame.getChoixPause().setEnabled(true);
 		frame.getChoixRun().setEnabled(false);
 		frame.getChoixReset().setEnabled(true);
-		if(!partie.fin_partie()){partie.launch();}
+		if(!partie.fin_partie()){
+			partie.launch();
+		}
 	}
 	public boolean fin_partie(){		
 		frame.getChoixStep().setEnabled(false);
