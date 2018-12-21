@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -15,10 +16,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -209,15 +213,37 @@ public class View extends JFrame implements Observateur{
 	}
 	
 	
-   public class Image {
+   public class Image extends JFrame {
+	   private JPanel panel;
+	   private BufferedImage image;
     	
-    	Image(){
+    	public Image(){
+    		this.setTitle("Game Over");
     		setLayout(new FlowLayout());
-    		ImageIcon img= new ImageIcon("game_over.jpg");
-    		label1 =new  JLabel(img);
-    		//add(label1);
-    		
+    		setSize(new Dimension(500, 400)); 
+    		Dimension windowSize = Plateaux.getSize();
+            GraphicsEnvironment gep = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            Point centerPoint= gep.getCenterPoint();
+            int dx = centerPoint.x - windowSize.width / 2 +100;
+            int dy = centerPoint.y - windowSize.height / 2 +100;
+            setLocation(dx, dy);
+        	BufferedImage myPicture;
+			try {
+				myPicture = ImageIO.read(new File("game_over.png"));
+	        	JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+	        	add(picLabel);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
     	}
+    		
+
+         protected void paintComponent(Graphics g) {
+             super.paintComponents(g);
+             g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+         }
     } 
 
 	@Override
@@ -235,8 +261,8 @@ public class View extends JFrame implements Observateur{
 			visuel.setGhostsScarred(false);
 		}
 		if(game.fin_partie()){
-			Image gui =new Image();
-			visuel.add(label1);
+			
+
 			//visuel.setVisible(true);
 			
 		}
@@ -298,5 +324,10 @@ public class View extends JFrame implements Observateur{
 	
 	}
 	
-
+	@Override
+	 public void gameover(){
+			int ending = 1;
+			Image gui =new Image();
+			gui.setVisible(true);
+	 }
 }

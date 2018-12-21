@@ -18,6 +18,7 @@ public abstract class Game implements Runnable,GameObservable{
 	String path ;
 	int ScaredTour = 0;
 	int point = 0;
+	int ending = 0;
 	
 	public int getTourScared(){
 		return ScaredTour;
@@ -57,12 +58,14 @@ public abstract class Game implements Runnable,GameObservable{
 
 	public void run(){
 		//init();
-		int ending = 0;
 		while (ending == 0){
-			
+
 			//step();
 			if ((!isRunning)||(getNbrTour() > tourMax)||(fin_partie())){ending=1;}
 			if (ending==0){step();}
+			else{gameOver();
+			System.out.println("je passse là");
+			return;}
 			try {
 				thread.sleep(timeTour);
 			} catch (InterruptedException e) {
@@ -108,6 +111,13 @@ public abstract class Game implements Runnable,GameObservable{
 		for(int i = 0; i< observateurs.size(); i++) {
 			Observateur observateur = observateurs.get(i);
 			observateur.actualiser();
+		}
+	}
+	
+	public void NotifierGameOver(){
+		for(int i = 0; i< observateurs.size(); i++) {
+			Observateur observateur = observateurs.get(i);
+			observateur.gameover();
 		}
 	}
 

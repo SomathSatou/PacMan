@@ -72,7 +72,7 @@ public class PacmanGame extends Game{
 			return true;
 		}
 		
-		else if(this.getNbrTour() < this.getTourMax()){
+	    if(this.getNbrTour() < this.getTourMax()){
 			return false;
 			}
 		
@@ -166,13 +166,8 @@ public class PacmanGame extends Game{
 	
 	@Override
 	public void gameOver() {
-		
-		if(fin_partie()){
-			
-			
-		}
-		
-		
+		ending = 1;
+		NotifierGameOver();
 		// TODO Auto-generated method stub
 		
 	}

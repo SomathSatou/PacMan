@@ -1,6 +1,17 @@
 package Controleur;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Maze.Maze;
 import Modele.Game;
@@ -10,6 +21,7 @@ import View.View;
 public class ControleurAvance implements ControleurGame{
 	Game partie;
 	View frame;
+	private int ending = 0;
 
 	public ControleurAvance (Game game){
 		partie = game;
@@ -54,8 +66,8 @@ public class ControleurAvance implements ControleurGame{
 
 	}
 	public void gameOver(){
-		
-		
+		System.out.println("test");
+		frame.gameover();
 		partie.gameOver();
 	}
 	public void pause(){
