@@ -53,9 +53,21 @@ public class PacmanGame extends Game{
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean resteFood(){
+		int x,y;
+		for(x = 0;x<maze.getSizeX();x++){
+			for(y = 0;y<maze.getSizeY();y++){
+				if (maze.isFood(x, y)){return true;}
+			}
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public boolean fin_partie() {
 		// TODO Auto-generated method stub
+
 		if(fin_jeu()){
 			return true;
 		}
@@ -80,6 +92,10 @@ public class PacmanGame extends Game{
 			
 			
 		}
+		if(pacmans.isEmpty()){return true;}
+		if(!resteFood()){return true;}
+		if(this.getNbrTour() < this.getTourMax()){return false;}
+
 		return true;
 	}
 	

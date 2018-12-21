@@ -175,6 +175,9 @@ public class View extends JFrame implements Observateur{
         Plateaux.setLocation(dxp, dyp);
         Plateaux.add(visuel);
         Plateaux.setVisible(true);
+        //***************************** affichage image************
+       // Image gui =new Image();
+       // gui.setVisible(true); 
 
         // ******************** fenetre ouvrir le fichier maze ******************************
         initialize();
@@ -204,7 +207,9 @@ public class View extends JFrame implements Observateur{
 	public JButton getChoixPause() {
 		return choixPause;
 	}
-    public class Image {
+	
+	
+   /* public class Image {
     	private ImageIcon img;
     	private JLabel label1;
     	Image(){
@@ -214,7 +219,7 @@ public class View extends JFrame implements Observateur{
     		add(label1);
     		
     	}
-    }
+    } */
 
 	@Override
 	public void actualiser() {
