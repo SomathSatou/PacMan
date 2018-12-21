@@ -3,6 +3,7 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -37,6 +38,7 @@ import Modele.Game;
 
 
 public class View extends JFrame implements Observateur{
+	
 	
 	
 	private JFrame commande;
@@ -202,7 +204,17 @@ public class View extends JFrame implements Observateur{
 	public JButton getChoixPause() {
 		return choixPause;
 	}
-
+    public class Image {
+    	private ImageIcon img;
+    	private JLabel label1;
+    	Image(){
+    		setLayout(new FlowLayout());
+    		img= new ImageIcon(getClass().getResource("game_over.jpg"));
+    		label1 =new  JLabel(img);
+    		add(label1);
+    		
+    	}
+    }
 
 	@Override
 	public void actualiser() {
@@ -238,6 +250,14 @@ public class View extends JFrame implements Observateur{
 			return path;
 		}  }
 	
+	
+	//*******************************draw game over*********************************************
+	/*private void drawGameOver()
+    {
+    	bufferGraphics.setColor(Color.WHITE);
+    	bufferGraphics.drawString("Game Over",80,150);
+    }
+ */
 	public void initialize() {
 		
 		frame = new JFrame();

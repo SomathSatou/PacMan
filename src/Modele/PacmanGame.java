@@ -56,9 +56,43 @@ public class PacmanGame extends Game{
 	@Override
 	public boolean fin_partie() {
 		// TODO Auto-generated method stub
-		if(this.getNbrTour() < this.getTourMax()){return false;}
+		if(fin_jeu()){
+			return true;
+		}
+		
+		else if(this.getNbrTour() < this.getTourMax()){
+			return false;
+			}
+		
+		return true;
+		
+	}
+       
+	public boolean parcourir(){
+		
+		for(int i = 0; i<maze.getSizeX();++i){
+			for( int j = 0; j<maze.getSizeY(); ++j){
+				if(maze.isFood(i,j)){
+					return false ;
+				}
+				
+			}
+			
+			
+		}
 		return true;
 	}
+	
+	public boolean fin_jeu()
+	{ 
+		
+		if(pacmans.isEmpty()|| parcourir()){
+			return true;
+			}
+		
+	   return false;
+	}
+
 
 	@Override
 	public void initializeGame() {
@@ -113,9 +147,15 @@ public class PacmanGame extends Game{
 		notifierObservateur();
 		// TODO Auto-generated method stub
 	}
-
+	
 	@Override
 	public void gameOver() {
+		
+		if(fin_partie()){
+			
+		}
+		
+		
 		// TODO Auto-generated method stub
 		
 	}
