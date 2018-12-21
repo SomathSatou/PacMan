@@ -38,7 +38,8 @@ import Modele.Game;
 
 
 public class View extends JFrame implements Observateur{
-	
+	private ImageIcon img;
+	private JLabel label1;
 	
 	
 	private JFrame commande;
@@ -176,8 +177,7 @@ public class View extends JFrame implements Observateur{
         Plateaux.add(visuel);
         Plateaux.setVisible(true);
         //***************************** affichage image************
-       // Image gui =new Image();
-       // gui.setVisible(true); 
+        
 
         // ******************** fenetre ouvrir le fichier maze ******************************
         initialize();
@@ -209,17 +209,16 @@ public class View extends JFrame implements Observateur{
 	}
 	
 	
-   /* public class Image {
-    	private ImageIcon img;
-    	private JLabel label1;
+   public class Image {
+    	
     	Image(){
     		setLayout(new FlowLayout());
-    		img= new ImageIcon(getClass().getResource("game_over.jpg"));
+    		ImageIcon img= new ImageIcon("game_over.jpg");
     		label1 =new  JLabel(img);
-    		add(label1);
+    		//add(label1);
     		
     	}
-    } */
+    } 
 
 	@Override
 	public void actualiser() {
@@ -234,6 +233,12 @@ public class View extends JFrame implements Observateur{
 		else
 		{
 			visuel.setGhostsScarred(false);
+		}
+		if(game.fin_partie()){
+			Image gui =new Image();
+			visuel.add(label1);
+			//visuel.setVisible(true);
+			
 		}
 		Plateaux.repaint();
 				 

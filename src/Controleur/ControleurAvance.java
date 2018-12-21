@@ -54,6 +54,8 @@ public class ControleurAvance implements ControleurGame{
 
 	}
 	public void gameOver(){
+		
+		
 		partie.gameOver();
 	}
 	public void pause(){

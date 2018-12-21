@@ -169,6 +169,7 @@ public class PacmanGame extends Game{
 		
 		if(fin_partie()){
 			
+			
 		}
 		
 		
